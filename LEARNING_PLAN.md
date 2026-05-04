@@ -4,18 +4,20 @@ Hands-on exploration of Claude Code features using a minimal FastAPI app as the 
 
 ## Foundation
 
-- [ ] **`/init` command** — generate a project `CLAUDE.md`
-- [ ] **CLAUDE.md scopes**
-  - [ ] Project: `CLAUDE.md` (committed, team-shared)
-  - [ ] Local: `.claude/CLAUDE.local.md` (personal, gitignored)
-  - [ ] Machine: `~/.claude/CLAUDE.md` (global)
+- [x] **`/init` command** — generate a project `CLAUDE.md`
+- [x] **CLAUDE.md scopes**
+  - [x] Project: `CLAUDE.md` (committed, team-shared)
+  - [x] Local: `CLAUDE.local.md` (personal, gitignored) — consciously skipped: single-user learning repo, so personal prefs went into the committed `CLAUDE.md` instead
+  - [x] Machine: `~/.claude/CLAUDE.md` (global)
 
 ## Customization
 
-- [ ] **Custom slash commands** — `.claude/commands/*.md` with `$ARGUMENTS`
+- [x] **Custom slash commands** — `.claude/commands/*.md` with `$ARGUMENTS` (built `/claude-overview`)
 - [ ] **Skills**
   - [ ] Project-level skill (committed)
   - [ ] Personal skill (in `~/.claude/skills/`)
+  - [ ] Build a concrete skill: **install a Python library** — takes a package name, asks regular vs dev, runs `uv add`/`uv add --dev`, reports what changed
+  - [ ] Build a concrete skill: **update branch with main** — likely `git merge origin/main` (to discuss)
 - [ ] **Hooks** — automated behaviors via `settings.json`
   - [ ] Example: auto-format on save / pre-commit lint
 

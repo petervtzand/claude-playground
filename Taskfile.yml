@@ -1,0 +1,50 @@
+version: "3"
+
+tasks:
+  start:
+    aliases: [s]
+    desc: Start the dev server with auto-reload at http://127.0.0.1:8000
+    cmds:
+      - uv run uvicorn main:app --reload
+
+  check:
+    desc: Format, lint, and typecheck.
+    cmds:
+      - echo "▶ Formatting"
+      - uv run ruff format .
+      - echo "▶ Linting"
+      - uv run ruff check --fix .
+      - echo "▶ Typechecking"
+      - uv run pyright
+    silent: true
+
+  install:
+    aliases: [i]
+    desc: Install all dependencies from uv.lock.
+    cmds:
+      - uv sync
+
+  add:
+    desc: 'Add a runtime dep (something the app imports). Usage: task add -- <package>'
+    cmds:
+      - uv add {{.CLI_ARGS}}
+
+  add-dev:
+    desc: 'Add a dev-only dep (linter, test, etc — not imported by the app). Usage: task add-dev -- <package>'
+    cmds:
+      - uv add --dev {{.CLI_ARGS}}
+
+  remove:
+    desc: 'Remove a dependency. Usage: task remove -- <package>'
+    cmds:
+      - uv remove {{.CLI_ARGS}}
+
+  progress:
+    desc: Print learning plan completion as done/total = pct%.
+    silent: true
+    cmds:
+      - |
+        done=$(grep -c '\[x\]' LEARNING_PLAN.md)
+        total=$(grep -cE '\[(x| )\]' LEARNING_PLAN.md)
+        pct=$(awk "BEGIN { printf \"%.0f\", ($done/$total)*100 }")
+        echo "$done/$total = ${pct}%"
