@@ -14,9 +14,9 @@ Hands-on exploration of Claude Code features using a minimal FastAPI app as the 
 
 - [x] **Custom slash commands** — `.claude/commands/*.md` with `$ARGUMENTS` (built `/claude-overview`)
 - [ ] **Skills**
-  - [ ] Project-level skill (committed)
+  - [x] Project-level skill (committed)
   - [ ] Personal skill (in `~/.claude/skills/`)
-  - [ ] Build a concrete skill: **install a Python library** — takes a package name, asks regular vs dev, runs `uv add`/`uv add --dev`, reports what changed
+  - [x] Build a concrete skill: **install a Python library** — takes a package name, asks regular vs dev, runs `uv add`/`uv add --dev`, reports what changed
   - [ ] Build a concrete skill: **update branch with main** — likely `git merge origin/main` (to discuss)
 - [ ] **Hooks** — automated behaviors via `settings.json`
   - [ ] Example: auto-format on save / pre-commit lint
