@@ -3,6 +3,11 @@
     "github": {
       "type": "stdio",
       "command": "/Users/petervtzand/.local/bin/run-github-mcp.sh"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp"]
     }
   }
 }

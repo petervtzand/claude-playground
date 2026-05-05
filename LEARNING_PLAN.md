@@ -25,8 +25,8 @@ Hands-on exploration of Claude Code features using a minimal FastAPI app as the 
 
 - [x] **MCP** — connect an external MCP server (e.g. context7, GitHub MCP)
 - [x] **Agents** — try `Explore`, `Plan`, custom subagents
-- [ ] **Workflows** — multi-step or scheduled tasks (`/loop`, `/schedule`)
-- [ ] **Playwright** — browser automation (to discuss: Playwright MCP server vs. Python lib for tests)
+- [x] **Workflows** — multi-step or scheduled tasks (`/loop`, `/schedule`)
+- [x] **Playwright** — browser automation (to discuss: Playwright MCP server vs. Python lib for tests)
 
 ## API-level (different scope from Claude Code)
 

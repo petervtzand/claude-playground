@@ -1,11 +1,11 @@
 # CLAUDE_OVERVIEW.md
 
-Auto-generated quick reference of Claude Code primitives in this sandbox. Regenerate with `/claude-overview`.
+Auto-generated reference of every Claude Code primitive in this project. Regenerate with `/claude-overview`.
 
 ## CLAUDE.md scopes
 
 ### What & when
-Markdown files auto-injected into every Claude session as durable instructions.
+Markdown files loaded into Claude's context every session — pick the scope based on whether the rule belongs to the team, just-this-machine, or just-this-project-for-me.
 
 ### Currently set up
 - CLAUDE.md (team-shared codebase facts, committed)
@@ -15,25 +15,25 @@ Markdown files auto-injected into every Claude session as durable instructions.
   - Working mode
 - CLAUDE.local.md (personal notes for this repo, gitignored)
   - Progress tracking
-- ~/.claude/CLAUDE.md (cross-project preferences)
+- ~/.claude/CLAUDE.md (cross-project preferences, machine-global)
   - Single source of commands
   - Code documentation
 
 ## Skills
 
 ### What & when
-Reusable procedures Claude invokes by description, not by name.
+Markdown files with frontmatter that auto-trigger when a user prompt matches the description; the skill body becomes Claude's instructions for that turn.
 
 ### Currently set up
-- ~/.claude/skills/context7-mcp (fetch live library docs)
-- ~/.claude/skills/pr-description (write PR descriptions)
-- Built-ins: init, review, security-review, update-config, simplify, loop, schedule
-- No project-level skills yet
+- install-python-library (project; when adding/removing Python deps via task)
+- update-branch-with-main (project; when bringing origin/main into a feature branch)
+- commit-message (user-global; when drafting a commit from staged files)
+- context7-mcp (user-global; when asking about libraries/frameworks for current docs)
 
 ## Slash commands
 
 ### What & when
-Markdown templates in `.claude/commands/` triggered explicitly with `/<name>`.
+Markdown files in `.claude/commands/` invoked literally by typing `/<name>`; deterministic, user-driven workflows.
 
 ### Currently set up
 - /claude-overview (regenerate this file)
@@ -41,61 +41,65 @@ Markdown templates in `.claude/commands/` triggered explicitly with `/<name>`.
 ## Subagents
 
 ### What & when
-Sub-Claudes spawned via the Agent tool with their own context window.
+Specialized Claude instances spawned via the Agent tool, each with its own system prompt and restricted toolset; use when isolation, focus, or limited tools matter.
 
 ### Currently set up
-- Built-ins: Explore, general-purpose, Plan, claude-code-guide, statusline-setup
-- No custom subagents
+- endpoint-tester (project; when adding pytest tests for a FastAPI endpoint in main.py)
 
 ## MCP servers
 
 ### What & when
-External tool servers Claude talks to over the Model Context Protocol.
+External servers exposing typed tools, resources, and prompts over stdio or HTTP; give Claude structured access to systems beyond the local filesystem.
 
 ### Currently set up
-- context7 (live library docs, global)
-- Gmail / Google Calendar / Google Drive (global)
-- No project-level `.mcp.json`
+- github (project, stdio via wrapper script; for GitHub API operations like issues, PRs, commits)
+- playwright (project, stdio via npx; for browser automation — navigate, screenshot, interact with rendered pages)
+- context7 (user-global, HTTP; for fetching current library/framework docs)
 
 ## Hooks
 
 ### What & when
-Shell commands the harness runs automatically on lifecycle events.
+Shell commands the harness runs at lifecycle events (PreToolUse, PostToolUse, Stop, etc.); deterministic enforcement that fires regardless of model attention.
 
 ### Currently set up
-- None
+- PreToolUse Bash pip-block (project; blocks pip-prefixed commands so uv stays the only dep manager)
+- PostToolUse Edit|Write|MultiEdit task check (project; runs format/lint/typecheck on every .py edit)
+- PostToolUse Edit|Write|MultiEdit doc-drift (project; warns if Taskfile.yml tasks aren't documented in README/CLAUDE.md)
 
 ## Settings (`settings.json`)
 
 ### What & when
-JSON config for permissions, hooks, env vars, MCP toggles.
+JSON config for hooks, permissions, env vars, MCP enable/disable, plugins, theme; project file is committed for the team, local file is gitignored for personal allowlists.
 
 ### Currently set up
-- .claude/settings.local.json (allowlists `task progress`, `ls`, and reads under `~/.claude/`)
-- No project-level `settings.json`
+- .claude/settings.json (committed; defines the three hooks)
+- .claude/settings.local.json (gitignored; personal Bash/Skill/MCP-tool permission allowlist)
+- ~/.claude/settings.json (user-global; currently empty `{}`)
 
 ## Workflows (`/loop`, `/schedule`)
 
 ### What & when
-Built-in commands for recurring (`/loop`) or cron-scheduled (`/schedule`) work.
+Built-in commands for repeating a task on an interval (`/loop`) or scheduling a remote agent on cron (`/schedule`).
 
 ### Currently set up
-- None active
+- None
 
 ## Plugins (Superpowers)
 
 ### What & when
-Anthropic's plugin marketplace — bundled skills/commands/hooks.
+Anthropic's plugin/skill ecosystem distributed via marketplaces; bundles skills, hooks, agents, and MCP servers from a remote source.
 
 ### Currently set up
-- Not installed
+- None
 
-## Tooling around the repo
+## Tooling around the repo (not Claude primitives)
 
-*Not Claude primitives — listed for completeness.*
+### What & when
+Project conventions for build/test/lint/dep management, listed for completeness so this overview stays a one-stop reference.
 
+### Currently set up
 - Taskfile.yml (single command runner; `task --list` shows everything)
-- pyproject.toml (deps + ruff/pyright config)
-- uv (package manager, wrapped by `task add` etc.)
-- ruff (formatter + linter, in `task check`)
-- pyright (type checker, in `task check`)
+- uv (dep manager; uv.lock + pyproject.toml)
+- ruff (format + lint, config in pyproject.toml)
+- pyright (static typecheck, config in pyproject.toml)
+- pytest (test runner, config in pyproject.toml; tests live in tests/)

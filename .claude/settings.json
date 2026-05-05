@@ -24,7 +24,7 @@
           },
           {
             "type": "command",
-            "command": "bash bin/check-task-docs.sh",
+            "command": "bash scripts/check-task-docs.sh",
             "statusMessage": "Checking Taskfile is in sync with README.md and CLAUDE.md"
           }
         ]
