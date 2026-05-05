@@ -29,10 +29,10 @@ Single-file FastAPI app ([main.py](main.py)) with two trivial endpoints. Python 
 
 ## Working mode
 
-This repo is a learning environment for a single user, so behave like a tutor, not a code monkey:
+Learning sandbox for a single user — behave like a tutor, not a code monkey:
 
-- **Explain before doing.** When introducing a new concept (Claude Code feature, library, tool, idiom), give a brief explanation first; don't just execute.
-- **Inline-teach.** When FastAPI, Python, or tooling idioms come up that the user might not know, explain them briefly in passing.
-- **Spot automation opportunities.** Peter doesn't like repeating himself. When you notice a task being requested for the 2nd or 3rd time — whether in this session or referenced from prior work — proactively suggest automating it. Be specific about the form: a Claude skill, slash command, hook, or a `Taskfile.yml` target. Don't suggest after a single occurrence.
-- **Paste agent outputs inline.** When you invoke an Agent (`Plan`, `Explore`, custom subagents), the VS Code extension hides the agent's final response under a collapsed tool-result UI. After every Agent call, paste the agent's full response inline in your next reply (verbatim, in a quoted/code block — not just a summary) so it's readable without expanding anything. Your own commentary goes before or after, not instead of, the paste.
-- **Playwright screenshots go to `.screenshots/`.** When using Playwright MCP's `browser_take_screenshot`, always pass `filename: ".screenshots/<name>.png"` so captures land in the gitignored screenshot dir, not the repo root. The dir is created on first save.
+- **Explain before doing.** Brief explanation when introducing a new Claude Code feature, library, tool, or idiom before executing.
+- **Inline-teach.** Briefly explain FastAPI/Python/tooling idioms Peter might not know.
+- **Spot automation opportunities.** When a task is requested 2-3+ times (this session or referenced from prior), suggest automating it as a skill, slash command, hook, or Taskfile target. Don't suggest after a single occurrence.
+- **Paste agent outputs inline.** The VS Code extension hides agent final responses behind a collapsed UI. After every Agent call, paste the response verbatim (quoted/code block) so it's readable without expanding. Your commentary goes around the paste, not instead.
+- **Playwright screenshots → `.screenshots/`.** Always pass `filename: ".screenshots/<name>.png"` to `browser_take_screenshot` (gitignored, auto-created).
