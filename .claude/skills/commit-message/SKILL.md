@@ -1,11 +1,11 @@
 ---
 name: commit-message
-description: Use when Peter wants to commit (and push) files he has already staged in VSCode. Inspects the staged diff, drafts a commit message, asks Peter to approve, then runs git commit and git push. Examples - "draft a commit message", "commit the staged changes", "what should I commit this as", "give me a commit message", "commit and push".
+description: Use when Peter wants a draft commit message for files he has already staged in VSCode. Inspects the staged diff, drafts the message, and outputs it for Peter to copy and commit himself. Does NOT commit or push — that's Peter's job. Examples - "draft a commit message", "commit the staged changes", "what should I commit this as", "give me a commit message".
 ---
 
 # commit-message
 
-Peter stages files himself in VSCode. This skill drafts a commit message from the staged diff, **asks him to approve it**, then commits and pushes on his go-ahead.
+Peter stages files himself in VSCode. This skill drafts a commit message from the staged diff and outputs it inside a fenced code block. Peter copies it and runs `git commit` himself — that's faster than the back-and-forth approval flow. **The skill never commits, pushes, or stages.**
 
 ## Procedure
 
@@ -24,31 +24,7 @@ Peter stages files himself in VSCode. This skill drafts a commit message from th
    - **A blank line.**
    - **Short, high-level bullets** — one per logically distinct change. Skip the bullets entirely for a single-change commit.
 
-4. **Output the message inside a fenced code block** so Peter can copy it if he prefers, then ask explicitly:
-   > **Happy with this message? Reply `yes` to commit and push, or tell me what to change.**
-
-5. **Wait for Peter's response.** Do not commit until he approves.
-   - If he says yes (or equivalent): proceed to step 6.
-   - If he edits the message or asks for changes: redraft, re-output, ask again.
-   - If he says no / cancels: stop.
-
-6. **Commit and push.** On approval:
-   - `git commit` using a HEREDOC for the message:
-     ```
-     git commit -m "$(cat <<'EOF'
-     <summary line>
-
-     - <bullet>
-     - <bullet>
-     EOF
-     )"
-     ```
-   - Then `git push`.
-   - **Never** use `--amend`, `--no-verify`, `--no-gpg-sign`, or `--force`.
-   - **Never** `git add` on Peter's behalf — he stages himself.
-   - If a pre-commit hook fails, surface the error verbatim and ask how to proceed (likely fix the underlying issue, then re-stage and re-commit as a *new* commit). Don't bypass hooks.
-
-7. **Confirm.** After push, run `git status` once and report: branch, that the commit landed, and that the push succeeded.
+4. **Output the message inside a fenced code block.** That's it — don't ask for approval, don't commit, don't push. Peter takes it from here.
 
 ## Format example
 
@@ -68,10 +44,10 @@ feat: add httpx for outbound HTTP calls
 
 ## When NOT to apply
 
-- If Peter dictates the exact message verbatim, use his text as-is — still ask for approval before committing.
+- If Peter dictates the exact message verbatim, use his text as-is.
 - If a project's `CLAUDE.md` mandates a *different* format (e.g. omitting the prefix, or a custom prefix scheme), follow the project rule over this default.
 
-## Safety
+## What you must NEVER do
 
-- Pushing to `main`/`master`: do it (per Peter's request via this skill), but if the push would be a force-push for any reason, **stop and confirm first**.
-- If the current branch has no upstream set, use `git push -u origin <branch>` and mention that you set the upstream.
+- **Never** `git commit`, `git push`, or `git add` on Peter's behalf — he handles those.
+- **Never** ask "happy with this? reply yes" — just output the draft and stop.
