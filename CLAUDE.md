@@ -12,7 +12,8 @@ Common tasks go through **[Task](https://taskfile.dev)** (`Taskfile.yml`). Depen
 
 - `task start` — run the dev server at http://127.0.0.1:8000 (`/docs` for interactive API)
 - `task test` — run the pytest suite
-- `task check` — format, lint (`--fix`), and typecheck in one go. Run before committing.
+- `task check` — format, lint (`--fix`), and typecheck. Flags unused imports without stripping. Run before committing.
+- `task fix` — same as `task check` but also auto-strips unused imports (overrides the F401 unfixable rule). Use deliberately when you want cleanup.
 - `task install` — install everything from `uv.lock` (e.g., on a fresh clone)
 - `task add -- <pkg>` — add a runtime dep (note the `--` to forward args)
 - `task add-dev -- <pkg>` — add a dev dep (linter, tests, etc.)

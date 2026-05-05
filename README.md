@@ -16,7 +16,8 @@ All workflows go through [Task](https://taskfile.dev) — run `task --list` to s
 
 - `task start` — run the dev server
 - `task test` — run the pytest suite
-- `task check` — format, lint (`--fix`), and typecheck
+- `task check` — format, lint (`--fix`), and typecheck (flags unused imports without stripping)
+- `task fix` — same as `task check` but also auto-strips unused imports
 - `task install` — install all deps from `uv.lock`
 - `task add -- <pkg>` — add a runtime dep
 - `task add-dev -- <pkg>` — add a dev dep

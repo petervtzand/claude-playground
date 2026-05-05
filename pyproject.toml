@@ -23,6 +23,9 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
+# Don't auto-strip unused imports during normal `task check` — flag them so
+# Claude/the user can decide. Use `task fix` to opt into stripping.
+unfixable = ["F401"]
 
 [tool.pyright]
 pythonVersion = "3.12"

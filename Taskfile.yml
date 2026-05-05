@@ -12,12 +12,23 @@ tasks:
       - uv run pytest
 
   check:
-    desc: Format, lint, and typecheck.
+    desc: Format, lint, and typecheck. Flags unused imports without stripping (use `task fix` for that).
     cmds:
       - echo "▶ Formatting"
       - uv run ruff format .
       - echo "▶ Linting"
       - uv run ruff check --fix .
+      - echo "▶ Typechecking"
+      - uv run pyright
+    silent: true
+
+  fix:
+    desc: Same as `task check` but also auto-strips unused imports (overrides the F401 unfixable rule). Use deliberately.
+    cmds:
+      - echo "▶ Formatting"
+      - uv run ruff format .
+      - echo "▶ Linting (with F401 auto-strip)"
+      - uv run ruff check --fix --extend-fixable=F401 .
       - echo "▶ Typechecking"
       - uv run pyright
     silent: true

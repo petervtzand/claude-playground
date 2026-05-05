@@ -25,8 +25,8 @@ Hands-on exploration of Claude Code features using a minimal FastAPI app as the 
 
 - [x] **MCP** — connect an external MCP server (e.g. context7, GitHub MCP)
 - [x] **Build a custom MCP server** — write a stdio MCP server exposing domain-specific tools (e.g. `run_tests`); register it in `.mcp.json` and use it from a subagent
-- [ ] **MCP Resources + Prompts** — extend `local-tests` with at least one Resource (read-only data) and one Prompt (user-invokable template) to cover the full MCP triad beyond Tools
-- [ ] **MCP Inspector** — debug `local-tests` standalone via Anthropic's browser-based MCP Inspector; list and call its tools/resources/prompts without going through Claude
+- [x] **MCP Resources + Prompts** — extend `local-tests` with at least one Resource (read-only data) and one Prompt (user-invokable template) to cover the full MCP triad beyond Tools
+- [x] **MCP Inspector** — debug `local-tests` standalone via Anthropic's browser-based MCP Inspector; list and call its tools/resources/prompts without going through Claude
 - [x] **Agents** — try `Explore`, `Plan`, custom subagents
 - [x] **Workflows** — multi-step or scheduled tasks (`/loop`, `/schedule`)
 - [x] **Playwright** — browser automation (to discuss: Playwright MCP server vs. Python lib for tests)
