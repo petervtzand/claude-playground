@@ -1,0 +1,14 @@
+# Pre-commit hooks. After cloning, run:
+#   task install
+# (which now includes `pre-commit install` to register the hooks under .git/).
+#
+# To run manually against staged files: `pre-commit run`
+# To run against the whole repo: `pre-commit run --all-files`
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks
+        # Scan the staged diff for secrets (API keys, tokens, PATs, etc.).
+        # Blocks the commit if any are detected.

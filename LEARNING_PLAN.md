@@ -34,7 +34,7 @@ Hands-on exploration of Claude Code features using a minimal FastAPI app as the 
 ## Bonus
 
 - [x] **Superpowers** — Anthropic's plugin/skill ecosystem
-- [ ] **Claude Agent SDK** — write a small Python script using the Anthropic SDK that embeds Claude as an engine (vs. being a user of Claude Code); inverts the mental model from "Claude Code uses my tools" to "my code uses Claude"
+- [x] **Claude Agent SDK** — write a small Python script using the Anthropic SDK that embeds Claude as an engine (vs. being a user of Claude Code); inverts the mental model from "Claude Code uses my tools" to "my code uses Claude"
 - [x] **Token efficiency audit** — measure system-prompt overhead from MCP tool schemas, skill descriptions, CLAUDE.md, etc. Apply optimizations: per-project MCP server disable, `skillOverrides` (`name-only` / `off`), `skillListingMaxDescChars`, trimming long context. Goal: cheaper session starts (caching helps within sessions but not across them)
 
 ## GitHub integration

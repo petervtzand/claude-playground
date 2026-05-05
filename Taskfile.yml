@@ -34,9 +34,10 @@ tasks:
     silent: true
 
   install:
-    desc: Install all dependencies from uv.lock.
+    desc: Install all deps from uv.lock and register pre-commit hooks under .git/.
     cmds:
       - uv sync
+      - uv run pre-commit install
 
   add:
     desc: 'Add a runtime dep (something the app imports). Usage: task add -- <package>'

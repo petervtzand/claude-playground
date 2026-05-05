@@ -17,6 +17,7 @@ Peter stages files himself in VSCode. This skill drafts a commit message from th
 2. **Sanity-check.**
    - If nothing is staged, say so and stop.
    - If staged and unstaged changes overlap meaningfully, mention it once so Peter knows the message only covers what's staged.
+   - **Check the staged diff for any secrets or keys.** If you spot any, **stop**, point them out, and tell Peter to remove them before drafting. (The pre-commit `gitleaks` hook will block the commit anyway; the skill catches it earlier.)
 
 3. **Draft the message in this format:**
    - **One short sentence** describing what the commit does (imperative mood: "add X", "fix Y").
