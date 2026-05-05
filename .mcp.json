@@ -8,6 +8,11 @@
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "@playwright/mcp"]
+    },
+    "local-tests": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "python", "scripts/run_tests_mcp.py"]
     }
   }
 }

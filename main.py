@@ -25,6 +25,11 @@ async def version() -> dict[str, str]:
     return {"version": __version__}
 
 
+@app.get("/echo/{message}")
+async def echo(message: str) -> dict[str, str]:
+    return {"echo": message}
+
+
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon() -> FileResponse:
     return FileResponse("static/favicon.svg", media_type="image/svg+xml")

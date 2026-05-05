@@ -33,3 +33,13 @@ def test_version_status_code():
 def test_version_body():
     response = client.get("/version")
     assert response.json() == {"version": "0.1.0"}
+
+
+def test_echo_status_code():
+    response = client.get("/echo/hello")
+    assert response.status_code == 200
+
+
+def test_echo_body():
+    response = client.get("/echo/hello")
+    assert response.json() == {"echo": "hello"}

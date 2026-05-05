@@ -24,23 +24,18 @@ Hands-on exploration of Claude Code features using a minimal FastAPI app as the 
 ## Extension
 
 - [x] **MCP** — connect an external MCP server (e.g. context7, GitHub MCP)
+- [x] **Build a custom MCP server** — write a stdio MCP server exposing domain-specific tools (e.g. `run_tests`); register it in `.mcp.json` and use it from a subagent
 - [x] **Agents** — try `Explore`, `Plan`, custom subagents
 - [x] **Workflows** — multi-step or scheduled tasks (`/loop`, `/schedule`)
 - [x] **Playwright** — browser automation (to discuss: Playwright MCP server vs. Python lib for tests)
 
-## API-level (different scope from Claude Code)
-
-- [ ] **Tools** — Claude API tool use (function calling)
-- [ ] **Images / multimodal** — vision input or generated image workflows
-- [ ] **MCP primitives** — resources (data) and prompts (user-triggered templates)
-
 ## Bonus
 
-- [ ] **Superpowers** — Anthropic's plugin/skill ecosystem
+- [x] **Superpowers** — Anthropic's plugin/skill ecosystem
 
 ## GitHub integration
 
-- [ ] Conventional commit messages
-- [ ] PR descriptions via skill
+- [x] Conventional commit messages
+- [x] PR descriptions via skill
 - [ ] Branch naming conventions
 - [ ] CI checks on PRs
