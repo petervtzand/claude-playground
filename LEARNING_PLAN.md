@@ -37,5 +37,5 @@ Hands-on exploration of Claude Code features using a minimal FastAPI app as the 
 
 - [x] Conventional commit messages
 - [x] PR descriptions via skill
-- [ ] Branch naming conventions
+- [x] Branch naming conventions
 - [ ] CI checks on PRs
