@@ -2,10 +2,14 @@ version: "3"
 
 tasks:
   start:
-    aliases: [s]
     desc: Start the dev server with auto-reload at http://127.0.0.1:8000
     cmds:
       - uv run uvicorn main:app --reload
+
+  test:
+    desc: Run the pytest suite.
+    cmds:
+      - uv run pytest
 
   check:
     desc: Format, lint, and typecheck.
@@ -19,7 +23,6 @@ tasks:
     silent: true
 
   install:
-    aliases: [i]
     desc: Install all dependencies from uv.lock.
     cmds:
       - uv sync

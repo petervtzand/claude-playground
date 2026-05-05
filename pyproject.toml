@@ -13,6 +13,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pyright>=1.1.409",
+    "pytest>=9.0.3",
     "ruff>=0.15.12",
 ]
 
@@ -26,3 +27,7 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 pythonVersion = "3.12"
 venvPath = "."
 venv = ".venv"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

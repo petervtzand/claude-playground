@@ -13,19 +13,20 @@ Hands-on exploration of Claude Code features using a minimal FastAPI app as the 
 ## Customization
 
 - [x] **Custom slash commands** — `.claude/commands/*.md` with `$ARGUMENTS` (built `/claude-overview`)
-- [ ] **Skills**
+- [x] **Skills**
   - [x] Project-level skill (committed)
   - [x] Personal skill (in `~/.claude/skills/`)
   - [x] Build a concrete skill: **install a Python library** — takes a package name, asks regular vs dev, runs `uv add`/`uv add --dev`, reports what changed
   - [x] Build a concrete skill: **update branch with main** — likely `git merge origin/main` (to discuss)
-- [ ] **Hooks** — automated behaviors via `settings.json`
-  - [ ] Example: auto-format on save / pre-commit lint
+- [x] **Hooks** — automated behaviors via `settings.json`
+  - [x] Example: auto-format on save / pre-commit lint
 
 ## Extension
 
-- [ ] **MCP** — connect an external MCP server (e.g. context7, GitHub MCP)
-- [ ] **Agents** — try `Explore`, `Plan`, custom subagents
+- [x] **MCP** — connect an external MCP server (e.g. context7, GitHub MCP)
+- [x] **Agents** — try `Explore`, `Plan`, custom subagents
 - [ ] **Workflows** — multi-step or scheduled tasks (`/loop`, `/schedule`)
+- [ ] **Playwright** — browser automation (to discuss: Playwright MCP server vs. Python lib for tests)
 
 ## API-level (different scope from Claude Code)
 

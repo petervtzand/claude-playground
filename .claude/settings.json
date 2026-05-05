@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // \"\"' | grep -qE '^[[:space:]]*pip[0-9]?([[:space:]]|$)' || exit 0; echo 'This project uses uv, not pip. Use `task add -- <pkg>` (or `task add-dev -- <pkg>`) instead.' >&2; echo '{\"systemMessage\":\"❌ Blocked pip command — this project uses uv (task add)\"}'; exit 2",
+            "statusMessage": "Blocking pip — this project uses uv (task add)"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -e '.tool_input.file_path | endswith(\".py\")' >/dev/null 2>&1 || exit 0; task check >&2 || exit 2; echo '{\"systemMessage\":\"✓ task check passed (format/lint/typecheck)\"}'",
+            "statusMessage": "Checking Python edit (task check)..."
+          },
+          {
+            "type": "command",
+            "command": "bash bin/check-task-docs.sh",
+            "statusMessage": "Checking Taskfile is in sync with README.md and CLAUDE.md"
+          }
+        ]
+      }
+    ]
+  }
+}
